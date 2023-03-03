@@ -1,0 +1,6 @@
+//-------- BLOCO PADRÃO DO DNS para gerenciar os Domains ---------------
+zone "domains.manager" IN {
+    type master;
+    file "/var/named/default.zone";
+    allow-query { any; };
+};

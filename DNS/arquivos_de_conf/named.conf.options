@@ -1,0 +1,10 @@
+options {
+    directory "/var/named";
+    recursion yes;
+    listen-on { any; };
+
+    forwarders {
+            8.8.8.8;
+            8.8.4.4;
+    };
+};

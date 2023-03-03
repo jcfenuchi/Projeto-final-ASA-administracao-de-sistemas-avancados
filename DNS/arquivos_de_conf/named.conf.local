@@ -1,0 +1,6 @@
+zone "jcfenuchi" {
+    type master;
+    file "/var/named/default.zone";
+};
+
+include "/projeto-final/dns-files/arquivos_de_zonas";

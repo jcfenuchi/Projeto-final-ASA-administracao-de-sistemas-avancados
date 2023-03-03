@@ -1,0 +1,15 @@
+$TTL 30
+@ 	IN	SOA	@ root (
+	2022112307 	;serial
+	120		;refresh
+	60		;retry
+	300		;expiry
+	30		; Minimum
+	)
+
+@	IN 	NS	@	
+@	IN 	MX	5 	mail
+@		IN	A	172.20.0.2
+mail		IN	A	172.20.0.2
+@		IN	A	172.20.0.2
+www		IN	CNAME	@	

@@ -1,0 +1,48 @@
+FROM ubuntu:bionic
+
+#para instalar bind9 e alguns utilitarios
+RUN apt-get update \
+  && apt-get install -y \
+  bind9 \
+  bind9utils \
+  bind9-doc \
+  iputils-ping \
+  net-tools \
+  dnsutils \
+  vim
+
+# instalando apache e o firefox
+RUN apt install -y apache2 firefox x11-apps
+
+# instalando php
+# o ENV e o RUN é para settar variaveis de timezone necessario para instalação 
+ENV TZ=America/Sao_Paulo
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+RUN apt install -y php libapache2-mod-php php-mysql
+
+# Enable IPv4 para o DNS
+RUN sed -i 's/OPTIONS=.*/OPTIONS="-4 -u bind"/' /etc/default/bind9
+
+# Copy configuration files do DNS
+COPY DNS/arquivos_de_conf/named.conf.options /etc/bind/
+COPY DNS/arquivos_de_conf/named.conf.local /etc/bind/
+COPY DNS/arquivos_de_zona/default.zone /var/named/
+
+#copiando arquivos do projeto para nosso docker
+COPY APACHE/projeto-final /projeto-final
+
+#dando permissoes para arquivos 
+RUN chmod 777 -R /projeto-final
+RUN chmod 777 -R /var/www
+RUN chmod +s /projeto-final/apache-files/main_pages_management/reload_apps
+
+#copiando o index.php para a pasta para quando for acessado localhost no browser 
+RUN rm /var/www/html/index.html
+COPY APACHE/site-LocalHost-Primos/index.php /var/www/html/
+
+# incluindo o meu projeto no php
+RUN echo "Include /projeto-final/apache-files/apache.conf" >> /etc/apache2/apache2.conf
+
+# inicia os serviços bind9 php e abre o firefox ao dar docker-compose up recomendo usar --build
+ENTRYPOINT service bind9 start 2>/dev/null &&  service apache2 start 2>/dev/null && firefox localhost 2>/dev/null && /bin/bash -c "while :; do sleep 10; done"
+

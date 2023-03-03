@@ -1,0 +1,58 @@
+version: '3.7'
+
+services:
+  bind9:
+    container_name: dns-server
+    build:
+      context: .
+      dockerfile: dockerfile-bind
+    restart: always
+    networks:
+      dns-network:
+        ipv4_address: 172.20.0.2
+    environment:
+      - DISPLAY=${DISPLAY}
+    volumes:
+      - ${XAUTHORITY}:/root/.Xauthority
+      - /tmp/.X11-unix:/tmp/.X11-unix
+    dns:
+      - 172.20.0.2
+    links:
+      - "mysql"
+    depends_on:
+      - mysql
+
+  mysql:
+    container_name: mysql
+    image: mysql
+    restart: always
+    command:
+      - --default-authentication-plugin=mysql_native_password
+      - --character-set-server=utf8mb4
+      - --collation-server=utf8mb4_unicode_ci
+      - --innodb_force_recovery=0
+    volumes: 
+      - ./MySQL-Data:/var/lib/mysql
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: senha
+      MYSQL_DATABASE: base_de_dados
+      MYSQL_USER: usuario
+      MYSQL_PASSWORD: senha
+      TZ: America/Sao_Paulo
+    networks:
+      dns-network:
+        ipv4_address: 172.20.0.10
+  
+
+
+
+
+
+networks:
+  dns-network:
+    driver: bridge
+    ipam:
+     config:
+       - subnet: 172.20.0.0/16
