@@ -1,37 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=h1, initial-scale=1.0">
-    <title>Projeto ASA</title>
 </head>
 
-<style>
-    /* Style the header */
-    body {
-      background-color: #1f1717;
-      padding: 80px;
-      text-align: center;
-      font-size: 20px;
-      color: white;
-    }
-    .hi {
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
-        width: 30%;
-    }
-
-    #texto {
-        text-align: justify;
-    }
-    .btn {
-        color: white;
-    }
-
-
-</style>
 <body>
     <h1>☆ pagina de explicação do projeto ☆</h1><br>
     <div id="texto">
