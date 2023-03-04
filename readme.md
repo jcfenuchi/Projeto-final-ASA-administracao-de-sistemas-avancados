@@ -23,7 +23,7 @@
         que pode ser usado internamente de fomas adaptativas de forma persistente ou não.
         </p>
         <p>o ambiente criado conta com um (Mozilla firefox, Bind9, apache e php) e uma imagem com Mysql para o banco de dados.
-        após o inicios #docker-compose up --build ou pode ser usado docker stack ele vai fazer o deploy das imagens e vai abrir uma interface grafica do firefox apontando para localhost que vai ter 3 paginas, 
+        após o inicios #docker-compose up --build (erros ? usar o sudo ou chown na pasta MySQL-Data) ou pode ser usado docker stack ele vai fazer o deploy das imagens e vai abrir uma interface grafica do firefox apontando para localhost que vai ter 3 paginas, 
         uma para visualizar essa pagina, outra para visualizar as tabelas importantes do banco de dados, principal a pagina de login cuja eu chamei http://domains.manager. <br>OBS:só possui acesso aos sites caso seja usado o servidor de DNS 172.20.0.2 .
         </p> 
         <img src="APACHE/projeto-final/apache-files/welcome/www/images/pagina-de-login.png" alt="pagina domains" style="width:70%">
