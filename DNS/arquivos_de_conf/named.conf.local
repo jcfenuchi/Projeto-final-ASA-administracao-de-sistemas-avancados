@@ -1,4 +1,4 @@
-zone "jcfenuchi" {
+zone "welcome.com" {
     type master;
     file "/var/named/default.zone";
 };

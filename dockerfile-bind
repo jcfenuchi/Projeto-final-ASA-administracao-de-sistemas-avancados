@@ -38,10 +38,13 @@ RUN chmod +s /projeto-final/apache-files/main_pages_management/reload_apps
 
 #copiando o index.php para a pasta para quando for acessado localhost no browser 
 RUN rm /var/www/html/index.html
-COPY APACHE/site-LocalHost-Primos/index.php /var/www/html/
+COPY APACHE/projeto-final/apache-files/welcome/www/redirect.php /var/www/html/
+RUN mv /var/www/html/redirect.php /var/www/html/index.html
 
 # incluindo o meu projeto no php
 RUN echo "Include /projeto-final/apache-files/apache.conf" >> /etc/apache2/apache2.conf
+RUN echo "Include /projeto-final/apache-files/apache-welcome.conf" >> /etc/apache2/apache2.conf
+
 
 # inicia os serviços bind9 php e abre o firefox ao dar docker-compose up recomendo usar --build
 ENTRYPOINT service bind9 start 2>/dev/null &&  service apache2 start 2>/dev/null && firefox localhost 2>/dev/null && /bin/bash -c "while :; do sleep 10; done"

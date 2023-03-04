@@ -18,9 +18,8 @@ include('conexao.php');
         else {
             array_push($splited_domains,$domain);
             $domains = implode(",",$splited_domains);
-        	echo $domains;
-	    #FAZENDO O UPDATE NA TABELA DE DOMAINS DO ROOT
-            $sql_command_update_roots_domains = "UPDATE root_users SET domains = \"$domains\" WHERE Login_root = '$my_email'";
+	        #FAZENDO O UPDATE NA TABELA DE DOMAINS DO ROOT
+            $sql_command_update_roots_domains = "UPDATE root_users SET domains = \"$domains\" WHERE Login_root = \"$my_email\"";
             $sql_query_update = $mysqli->query($sql_command_update_roots_domains) or die("falha no sql:" . $mysqli->error);        
 
             # CRIANDO UM USUARIO PADRÃO PARA OS ADMIN
