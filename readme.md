@@ -9,7 +9,7 @@
         
 <h3 style="text-align:center" >Olá Saudações, sou julio cesar. </a></h3>  
         <img class="hi" src="APACHE/projeto-final/apache-files/welcome/www/images/hi.gif" width="300" heigth="300" />      
-        <p>&emsp;&emsp;esse resultado é fruto do meu projeto da disciplica que chamamos de ASA( Administração de Sistemas Abertos ) da grade de Redes de computadores.
+        <p>&emsp;&emsp;esse resultado é fruto do meu projeto da disciplina que chamamos de ASA( Administração de Sistemas Abertos ) da grade de Redes de computadores.
         onde aprendemos sobre DNS, DHCP, APACHE, FTP, serviço de email(Postfix/dovecot), basico de Banco de dados e PhP.
         </p>
 
